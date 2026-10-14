@@ -1,0 +1,22 @@
+# Служебные файлы Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Артефакты сборки
+build/
+dist/
+
+# Сгенерированные тестовые данные (создаются tests/make_vfs.py)
+tests/vfs_samples/
+*.zip
+
+# Настройки редакторов и IDE
+.idea/
+.vscode/
+*.swp
+.DS_Store

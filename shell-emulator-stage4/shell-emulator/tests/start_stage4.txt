@@ -1,0 +1,55 @@
+# Стартовый скрипт этапа 4: ls, cd, history, who, head (VFS deep.zip)
+# --- ls: корень, пути, ключи -l и -a ---
+ls
+ls -l
+ls /home/user
+ls -a /home/user
+ls -la /home/user/docs
+ls /home/user/docs /etc
+ls /readme.txt
+# --- cd: абсолютные и относительные пути, .., без аргумента ---
+cd /home/user/docs
+ls
+cd work
+ls -l
+cd ../..
+ls
+cd
+ls
+cd /
+# --- head: по умолчанию, -n, несколько файлов, двоичный файл ---
+head /home/user/docs/long.txt
+head -n 3 /home/user/docs/long.txt
+head -n5 /home/user/docs/long.txt
+head /home/user/docs/work/report.txt /home/user/docs/work/todo.txt
+head /home/user/data.bin
+cd /home/user/docs/work
+head -n 1 report.txt
+# --- who ---
+who
+who -q
+# --- history ---
+history 5
+history
+# --- переменные окружения (путь реальной ОС в VFS не найден) ---
+ls $HOME
+# --- ошибки (строки будут пропущены) ---
+ls /nope
+ls -z
+cd /nope
+cd /readme.txt
+cd a b
+head
+head /nope.txt
+head /home
+head -n x /readme.txt
+head -n
+head -z /readme.txt
+history abc
+history 1 2
+who now
+who -z
+foo
+# --- выход ---
+exit
+ls эта строка не выполнится

@@ -1,0 +1,45 @@
+# Стартовый скрипт этапа 5: touch и rm (VFS deep.zip, только в памяти)
+# --- состояние до изменений ---
+cd /home/user/docs
+ls -l
+# --- touch: новый файл, несколько файлов, существующий файл ---
+touch new.txt
+touch a.txt b.txt
+touch notes.txt
+ls -l
+head new.txt
+touch /home/user/music/song.txt
+ls /home/user/music
+# --- rm: файлы ---
+rm a.txt
+rm b.txt new.txt
+ls
+# --- rm: папки (нужен -r), ключ -f ---
+rm work
+rm -r work
+ls
+rm -rf /home/user/music
+ls /home/user
+rm -f /no/such/file
+# --- изменения видны только в памяти ---
+cd /
+vfs-info
+# --- ошибки (строки будут пропущены) ---
+touch
+touch /no/such/dir/file.txt
+touch /readme.txt/file.txt
+touch -z x
+rm
+rm /nope
+rm -z x
+rm /etc
+cd /home/user/docs
+rm -r .
+rm -r ..
+rm -r /home
+rm -r /
+# --- history ---
+history 6
+# --- выход ---
+exit
+ls эта строка не выполнится
