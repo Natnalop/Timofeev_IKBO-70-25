@@ -7,13 +7,11 @@ SCRIPT=tests/start_all.txt
 
 run() {
     echo
-    echo "=== $* ==="
     $PY src/emulator.py --headless "$@"
 }
 
 $PY tests/make_vfs.py
 
-echo "=== Модульные тесты ==="
 PYTHONPATH=src $PY -m unittest discover -s tests
 
 run --script $SCRIPT
@@ -22,10 +20,8 @@ run --vfs $SAMPLES/several.zip --prompt "[several]$ " --script $SCRIPT
 run --vfs $SAMPLES/deep.zip --prompt "deep# " --script $SCRIPT
 
 echo
-echo "=== ОШИБКИ ЗАГРУЗКИ VFS ==="
 run --vfs $SAMPLES/broken.zip
 run --vfs $SAMPLES/net_takogo.zip
 
 echo
-echo "=== ОШИБКА СТАРТОВОГО СКРИПТА ==="
 run --script tests/net_takogo.txt

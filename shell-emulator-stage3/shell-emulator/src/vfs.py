@@ -24,14 +24,12 @@ class Node:
     """Узел дерева: файл (с данными) или папка (с потомками)."""
 
     def __init__(self, name, is_dir, data=b""):
-        """Создаёт узел с именем ``name``."""
         self.name = name
         self.is_dir = is_dir
         self.data = data
         self.children = {} if is_dir else None
 
     def is_binary(self):
-        """Возвращает True, если данные не являются текстом UTF-8."""
         try:
             self.data.decode("utf-8")
         except UnicodeDecodeError:
@@ -39,7 +37,6 @@ class Node:
         return False
 
     def as_text(self):
-        """Возвращает текст файла или base64-строку для двоичных данных."""
         if self.is_binary():
             encoded = base64.b64encode(self.data).decode("ascii")
             return "base64:" + encoded
@@ -47,12 +44,10 @@ class Node:
 
 
 def split_path(path):
-    """Разбивает путь на непустые части."""
     return [part for part in path.split("/") if part]
 
 
 def _walk(node, indent, lines):
-    """Дописывает в ``lines`` строки дерева для потомков ``node``."""
     for name in sorted(node.children):
         child = node.children[name]
         if child.is_dir:
@@ -65,7 +60,6 @@ def _walk(node, indent, lines):
 
 
 def _load_entries(vfs, archive):
-    """Читает все записи ZIP-архива в память VFS."""
     for info in archive.infolist():
         name = info.filename.replace("\\", "/")
         if ".." in split_path(name):
@@ -77,15 +71,10 @@ def _load_entries(vfs, archive):
 
 
 class VFS:
-    """Виртуальная файловая система в памяти."""
-
     def __init__(self):
-        """Создаёт пустую VFS с корневой папкой."""
         self.root = Node("", True)
         self.source = DEFAULT_SOURCE
-
     def _make_dir(self, parts):
-        """Возвращает папку по частям пути, создавая недостающие."""
         node = self.root
         for part in parts:
             child = node.children.get(part)

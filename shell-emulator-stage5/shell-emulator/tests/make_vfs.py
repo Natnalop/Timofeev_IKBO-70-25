@@ -1,9 +1,3 @@
-"""Генератор тестовых ZIP-архивов VFS в папке tests/vfs_samples.
-
-Архивы не хранятся в репозитории, а создаются перед тестами:
-minimal.zip - один файл, several.zip - несколько файлов (есть двоичный),
-deep.zip - 4 уровня вложенности, broken.zip - не ZIP (проверка ошибки).
-"""
 import base64
 import os
 import zipfile

@@ -7,13 +7,11 @@ SCRIPT=tests/start_stage5.txt
 
 run() {
     echo
-    echo "=== $* ==="
     $PY src/emulator.py --headless "$@"
 }
 
 $PY tests/make_vfs.py
 
-echo "=== Модульные тесты ==="
 PYTHONPATH=src $PY -m unittest discover -s tests
 
 BEFORE=$(cksum < $SAMPLES/deep.zip)
@@ -25,7 +23,7 @@ AFTER=$(cksum < $SAMPLES/deep.zip)
 
 echo
 if [ "$BEFORE" = "$AFTER" ]; then
-    echo "=== Архив deep.zip не изменён: правки были только в памяти ==="
+    :
 else
-    echo "=== ОШИБКА: архив deep.zip изменился ==="
+    exit 1
 fi

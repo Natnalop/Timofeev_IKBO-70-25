@@ -1,8 +1,3 @@
-"""Точка входа эмулятора оболочки UNIX (этапы 1-3).
-
-Запуск: ``python src/emulator.py [--vfs ZIP] [--prompt STR]
-[--script FILE] [--headless]``.
-"""
 import sys
 
 from config import debug_params, load_vfs, parse_args
@@ -10,7 +5,6 @@ from shell import Shell
 
 
 def repl(shell):
-    """Интерактивный цикл консольного режима; возвращает код выхода."""
     while True:
         try:
             line = input(shell.prompt)
@@ -24,7 +18,6 @@ def repl(shell):
 
 
 def run_headless(args):
-    """Консольный режим: выполняет скрипт или читает ввод с клавиатуры."""
     print(debug_params(args))
     vfs = load_vfs(args.vfs, print)
     if vfs is None:
@@ -37,7 +30,6 @@ def run_headless(args):
 
 
 def main(argv=None):
-    """Запускает эмулятор в графическом или консольном режиме."""
     args = parse_args(argv)
     if args.headless:
         return run_headless(args)

@@ -7,13 +7,13 @@ SCRIPT=tests/start_stage4.txt
 
 run() {
     echo
-    echo "=== $* ==="
+    echo "$*"
     $PY src/emulator.py --headless "$@"
 }
 
 $PY tests/make_vfs.py
 
-echo "=== Модульные тесты ==="
+echo "Модульные тесты"
 PYTHONPATH=src $PY -m unittest discover -s tests
 
 run --vfs $SAMPLES/deep.zip --prompt "deep# " --script $SCRIPT

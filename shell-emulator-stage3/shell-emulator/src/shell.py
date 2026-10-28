@@ -47,9 +47,8 @@ class ParseError(Exception):
 
 
 def parse(line):
-    """Разбивает строку на токены с раскрытием переменных и кавычек."""
     try:
-        return shlex.split(expand_env(line))
+        return [expand_env(token) for token in shlex.split(line)]
     except ValueError as err:
         raise ParseError(f"ошибка разбора: {err}")
 
@@ -64,10 +63,7 @@ class Result:
 
 
 class Shell:
-    """Интерпретатор команд эмулятора."""
-
     def __init__(self, vfs=None, prompt=None):
-        """Создаёт оболочку с VFS ``vfs`` и приглашением ``prompt``."""
         self.vfs = VFS.default() if vfs is None else vfs
         self.user = get_user()
         self.host = get_host()
@@ -81,7 +77,6 @@ class Shell:
         }
 
     def run(self, line):
-        """Выполняет одну строку ввода и возвращает ``Result``."""
         if not line.strip():
             return Result()
         try:
@@ -97,11 +92,6 @@ class Shell:
         return handler(args)
 
     def run_script(self, path, write):
-        """Выполняет стартовый скрипт, показывая ввод и вывод.
-
-        Ошибочные строки пропускаются. Возвращает True, если в скрипте
-        была выполнена команда ``exit``.
-        """
         try:
             with open(path, encoding="utf-8-sig") as file:
                 lines = file.read().splitlines()
@@ -114,7 +104,6 @@ class Shell:
         return False
 
     def _run_script_line(self, number, line, write):
-        """Выполняет строку скрипта; True, если выполнен ``exit``."""
         if not line.strip():
             return False
         if line.lstrip().startswith("#"):
@@ -129,23 +118,19 @@ class Shell:
         return result.should_exit
 
     def cmd_ls(self, args):
-        """Заглушка ``ls``: печатает имя и аргументы (логика - этап 4)."""
         return Result(" ".join(["ls"] + args))
 
     def cmd_cd(self, args):
-        """Заглушка ``cd``: печатает имя и аргументы (логика - этап 4)."""
         if len(args) > MAX_CD_ARGS:
             return Result("cd: слишком много аргументов", ok=False)
         return Result(" ".join(["cd"] + args))
 
     def cmd_exit(self, args):
-        """Команда ``exit``: завершает работу эмулятора."""
         if args:
             return Result("exit: слишком много аргументов", ok=False)
         return Result(should_exit=True)
 
     def cmd_vfs_info(self, args):
-        """Служебная команда: показывает источник и дерево VFS."""
         if args:
             return Result("vfs-info: аргументы не поддерживаются", ok=False)
         return Result(f"VFS: {self.vfs.source}\n{self.vfs.tree()}")
