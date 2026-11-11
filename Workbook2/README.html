@@ -1,0 +1,213 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><title>Workbook2 — Вариант 22</title>
+  <style>
+  @page {size:A4; margin:16mm 15mm 18mm}
+  body {font:10.5pt/1.45 'Arial',sans-serif; color:#17283a; max-width:1000px; margin:28px auto}
+  h1 {font-size:25pt;line-height:1.15;color:#124d70} h2{font-size:16pt;color:#124d70;margin-top:24px}
+  h1,h2,h3 {break-after:avoid} p,li{orphans:3;widows:3}
+  pre {font:9pt/1.4 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;background:#edf3f7;padding:12px;break-inside:avoid}
+  code {font-family:Consolas,monospace;font-size:9pt;overflow-wrap:anywhere}
+  table{border-collapse:collapse;width:100%;font-size:9pt;margin:14px 0} th,td{border:1px solid #b8c8d4;padding:6px;text-align:left;overflow-wrap:anywhere}
+  th{background:#e4eef5} tr{break-inside:avoid} thead{display:table-header-group}
+  img{display:block;max-width:100%;max-height:225mm;margin:12px auto;break-inside:avoid}
+  a{color:#145f85;overflow-wrap:anywhere} @media print{body{margin:0;max-width:none}}
+  </style><body><h1>Граф зависимостей Alpine Linux APK</h1>
+<p><strong>Проектная работа №2 · Конфигурационное управление · Вариант №22</strong><br>Тимофеев Антон, ИКБО-70-25. Язык: Python 3.11 или новее.</p>
+<p>Инструмент читает официальный индекс пакетов Alpine Linux, строит граф зависимостей и выводит его на языке D2. Получение зависимостей реализовано самостоятельно: используются <code>urllib.request</code>, <code>tarfile</code>, <code>tomllib</code>, <code>json</code> и другие модули стандартной библиотеки. Установка Python-пакетов через pip не нужна.</p>
+<h2>Структура работы</h2>
+<p>Каждая папка содержит самостоятельный запускаемый снимок приложения и собственные конфигурации.</p>
+<table>
+<thead>
+<tr>
+<th>Папка</th>
+<th>Результат этапа</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>stage1</code></td>
+<td>CLI, TOML, вывод шести параметров, проверка ошибок</td>
+</tr>
+<tr>
+<td><code>stage2</code></td>
+<td>Чтение APKINDEX, поиск точной версии, прямые зависимости</td>
+</tr>
+<tr>
+<td><code>stage3</code></td>
+<td>Рекурсивный BFS, глубина, фильтр, циклы, тестовый репозиторий</td>
+</tr>
+<tr>
+<td><code>stage4</code></td>
+<td>Прямые и обратные зависимости через тот же BFS</td>
+</tr>
+<tr>
+<td><code>stage5</code></td>
+<td>Вывод D2, три реальных графа, SVG, сравнение с apk dot</td>
+</tr>
+<tr>
+<td><code>tests</code></td>
+<td>Автоматические проверки конфигурации, данных, алгоритма и CLI</td>
+</tr>
+</tbody></table>
+<p><code>build_stages.py</code> обновляет снимки этапов из финального исходника; константа <code>STAGE</code> определяет доступные CLI-операции. Снимки не импортируют код соседних папок. <code>prepare_examples.py</code> воспроизводит учебные конфигурации и протоколы демонстраций.</p>
+<h2>Быстрый запуск</h2>
+<p>Открыть PowerShell в корне репозитория:</p>
+<pre><code class="language-powershell">python Workbook2/stage1/depgraph.py
+python Workbook2/stage2/depgraph.py
+python Workbook2/stage3/depgraph.py
+python Workbook2/stage4/depgraph.py --reverse
+python Workbook2/stage5/depgraph.py
+python -m unittest discover -s Workbook2/tests -v
+</code></pre>
+<p>По умолчанию используется <code>config.toml</code> рядом с приложением. Можно передать другой файл через <code>--config</code>. Этот аргумент выбирает файл, а все параметры анализа берутся именно из TOML.</p>
+<h2>Конфигурация</h2>
+<pre><code class="language-toml">package = &quot;A&quot;
+repository = &quot;repository.json&quot;
+test_mode = true
+version = &quot;1.0&quot;
+max_depth = 10
+filter_substring = &quot;&quot;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Назначение и проверка</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>package</code></td>
+<td>Имя пакета; в тестовом режиме только заглавные латинские буквы</td>
+</tr>
+<tr>
+<td><code>repository</code></td>
+<td>HTTP(S) URL каталога архитектуры или APKINDEX.tar.gz; в тестовом режиме существующий JSON-файл</td>
+</tr>
+<tr>
+<td><code>test_mode</code></td>
+<td>Строго TOML boolean: <code>true</code> или <code>false</code></td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>Точная версия корневого пакета, начинается с цифры; отсутствующая версия вызывает ошибку</td>
+</tr>
+<tr>
+<td><code>max_depth</code></td>
+<td>Целое число 0–200; boolean не принимается вместо числа</td>
+</tr>
+<tr>
+<td><code>filter_substring</code></td>
+<td>Строка без управляющих символов; пустая отключает фильтр</td>
+</tr>
+</tbody></table>
+<p>Относительный путь JSON разрешается относительно TOML, а не текущего каталога. Фильтрация чувствительна к регистру. Если фильтр исключает корневой пакет, конфигурация отклоняется. Неизвестные и отсутствующие ключи, неверные типы и поврежденный TOML вызывают понятную ошибку в stderr с кодом завершения 2. Успешное выполнение возвращает 0. Предел глубины 200 ограничивает рекурсию.</p>
+<h2>Этап 1. Минимальный прототип</h2>
+<p>При запуске выводятся все шесть параметров в формате <code>ключ = значение</code>. Каждый параметр проверяется до запуска анализа. Готовые ошибочные конфигурации находятся в <code>stage1/examples/invalid_*.toml</code>, фактические сообщения — в <code>stage1/examples/errors.txt</code>.</p>
+<pre><code class="language-powershell">python Workbook2/stage1/depgraph.py --config Workbook2/stage1/examples/invalid_max_depth.toml
+</code></pre>
+<p>Ожидается: <code>Ошибка: max_depth: допустимо целое число от 0 до 200</code>, код 2. Файл ошибок демонстрирует также неверное имя пакета, отсутствующий репозиторий, строку вместо boolean, пустую версию и фильтр, исключающий корень.</p>
+<h2>Этап 2. Получение данных</h2>
+<p>Для реального репозитория приложение загружает <code>APKINDEX.tar.gz</code> и читает текстовый член <code>APKINDEX</code> без извлечения файлов на диск. Поля <code>P</code>, <code>V</code>, <code>D</code>, <code>p</code> задают имя, версию, зависимости и предоставляемые виртуальные имена. Поиск корня выполняется строго по имени и версии. Прямые зависимости выводятся в исходной записи, например <code>so:libc.musl-x86_64.so.1</code>. Конфликты с префиксом <code>!</code> не являются зависимостями.</p>
+<pre><code class="language-powershell">python Workbook2/stage2/depgraph.py --config Workbook2/stage5/examples/curl.toml
+</code></pre>
+<p>У URL должны быть указаны ветка, секция и архитектура, например <code>https://dl-cdn.alpinelinux.org/alpine/v3.22/main/x86_64</code>. Ошибки HTTP, сети, архива, кодировки и отсутствия пакета обрабатываются. Тайм-аут сети — 30 секунд; размер архива и текста индекса ограничен 32 МиБ. Сохраненный официальный индекс в примерах позволяет воспроизвести отчет при последующих обновлениях Alpine.</p>
+<h2>Этап 3. Рекурсивный BFS</h2>
+<p>Вершина содержит имя и версию. Корень имеет глубину 0. Рекурсивная функция обрабатывает весь текущий слой BFS, формирует следующий и вызывает себя один раз для следующего уровня. Множество <code>seen</code> исключает повторное расширение вершин, но ребра к уже посещенным вершинам сохраняются. Поэтому циклы и ромбы корректно отображаются. Вершины предельной глубины включаются, их зависимости уже не раскрываются.</p>
+<p>Фильтр исключает совпадающие пакеты вместе с ребрами к ним, дальнейший обход через них не выполняется. Проверяются как имя зависимости, так и фактическое имя поставщика виртуальной зависимости. При отсутствии подходящей зависимости выводится ошибка вместо неполного графа.</p>
+<p>Тестовый репозиторий имеет формат:</p>
+<pre><code class="language-json">{
+  &quot;A&quot;: {&quot;version&quot;: &quot;1.0&quot;, &quot;dependencies&quot;: [&quot;B&quot;]},
+  &quot;B&quot;: {&quot;version&quot;: &quot;1.0&quot;, &quot;dependencies&quot;: [&quot;A&quot;]}
+}
+</code></pre>
+<p>В комплектном графе есть ромб <code>A → B → D</code>, <code>A → C → D</code>, цикл <code>D → A</code>, лист <code>E</code> и изолированная вершина <code>Z</code>. Все ссылки проверяются при чтении JSON.</p>
+<table>
+<thead>
+<tr>
+<th>Пример в <code>stage3/examples</code></th>
+<th>Ожидаемое поведение</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>cycle.toml</code></td>
+<td>5 достижимых вершин, 6 ребер, цикл сохраняется</td>
+</tr>
+<tr>
+<td><code>depth1.toml</code></td>
+<td>Только A, B, C; два ребра</td>
+</tr>
+<tr>
+<td><code>depth0.toml</code></td>
+<td>Только A, без ребер</td>
+</tr>
+<tr>
+<td><code>filter.toml</code></td>
+<td>B исключен, D остается достижим через C</td>
+</tr>
+<tr>
+<td><code>isolated.toml</code></td>
+<td>Только Z</td>
+</tr>
+</tbody></table>
+<pre><code class="language-powershell">python Workbook2/stage3/depgraph.py --config Workbook2/stage3/examples/depth1.toml
+</code></pre>
+<p>Фактический вывод каждого случая: <code>stage3/examples/demo.txt</code>. Сложность BFS после разрешения зависимостей — O(V + E), память — O(V + E); глубина рекурсии равна числу обработанных уровней.</p>
+<h2>Этап 4. Обратные зависимости</h2>
+<pre><code class="language-powershell">python Workbook2/stage4/depgraph.py --config Workbook2/stage4/examples/cycle.toml --reverse
+python Workbook2/stage4/depgraph.py --config Workbook2/stage4/examples/depth1.toml --reverse
+</code></pre>
+<p>Сначала по всему выбранному репозиторию строится обратная смежность, затем вызывается та же функция рекурсивного BFS. Вывод показывает направление обхода: <code>A → D</code> означает «от A к зависящему от него D». На глубине 1 для A находится D; на полной глубине находятся также B и C. Корень не считается собственной обратной зависимостью, хотя замыкающее цикл ребро сохраняется. Для Z обратных зависимостей нет. Глубина и фильтр действуют и в этом режиме. Фактические протоколы: <code>stage4/examples/demo.txt</code>.</p>
+<h2>Этап 5. D2 и визуализация</h2>
+<p>Финальный CLI выводит только описание D2. Режим <code>--reverse</code> относится к этапу 4 и в финальном CLI не предлагается. Идентификаторы и подписи экранируются, порядок вывода стабилен, изолированные вершины сохраняются.</p>
+<pre><code class="language-powershell">python Workbook2/stage5/depgraph.py --config Workbook2/stage5/examples/curl.toml
+python Workbook2/stage5/examples/generate_real.py
+d2 Workbook2/stage5/examples/curl.d2 Workbook2/stage5/examples/curl.svg
+</code></pre>
+<p>Вторая команда воспроизводит три D2-файла из сохраненного индекса стандартной библиотекой Python. D2 нужен только для преобразования готового текста в изображение. При сохранении stdout из Windows PowerShell 5 рекомендуется явно задавать UTF-8; готовые <code>.d2</code> уже записаны в UTF-8.</p>
+<table>
+<thead>
+<tr>
+<th>Пакет и версия</th>
+<th>Вершины</th>
+<th>Ребра</th>
+<th>Результат сравнения с apk dot</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>busybox 1.37.0-r20</td>
+<td>2</td>
+<td>1</td>
+<td>Совпадение</td>
+</tr>
+<tr>
+<td>zlib 1.4-r0</td>
+<td>2</td>
+<td>1</td>
+<td>Совпадение</td>
+</tr>
+<tr>
+<td>curl 8.14.1-r4</td>
+<td>14</td>
+<td>28</td>
+<td>Совпадение</td>
+</tr>
+</tbody></table>
+<p><img src="stage5/examples/busybox.svg" alt="Зависимости busybox"></p>
+<p><img src="stage5/examples/zlib.svg" alt="Зависимости zlib"></p>
+<p><img src="stage5/examples/curl.svg" alt="Зависимости curl"></p>
+<p>Снимок загружен 11.11.2026 из Alpine v3.22/main/x86_64. SHA-256, версии и размеры графов записаны в <code>stage5/examples/snapshot.json</code>. Для контрольного сравнения запускался штатный <code>apk dot</code> в контейнере Alpine с пустой базой установленных пакетов и тем же локальным индексом. Образ закреплен по digest в <code>compare_apk.py</code>. Результаты находятся в <code>*.apk.dot</code>, сообщения — в <code>*.apk.stderr.txt</code>, разности множеств ребер — в <code>comparison.json</code>.</p>
+<pre><code class="language-powershell">python Workbook2/stage5/examples/compare_apk.py
+</code></pre>
+<p>Для этого отдельного контрольного скрипта требуется работающий Docker. Само приложение не вызывает apk, Docker или сторонние средства получения зависимостей. При сравнении <code>имя@версия</code> нормализуется в <code>имя-версия</code>, повторяющиеся ребра сворачиваются. Для всех трех примеров разности пусты. Штатный DOT подписывает ребра виртуальными именами <code>so:...</code>; наша диаграмма показывает разрешенные пакеты без этих подписей, поэтому оформление отличается при совпадающей структуре.</p>
+<h2>Проверки и ограничения</h2>
+<p>На момент подготовки отчета пройдены 25 автоматических тестов, включая шесть параметров, поврежденные данные, точную версию, виртуальные зависимости, подписанный APKINDEX со склеенными gzip-потоками, сетевую ошибку, циклы, ромбы, фильтр, глубину, обратный обход, стабильность D2 и запуск всех пяти CLI.</p>
+<p>Программа является визуализатором одного выбранного репозитория, а не решателем установки APK. Для зависимостей поддерживаются операторы <code>=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>~</code> и виртуальные <code>provides</code>; при нескольких кандидатах выбирается максимальная версия, затем имя. Сортировка учитывает числовые части, суффиксы alpha/beta/pre/rc/cvs/svn/git/hg/p и ревизию <code>-rN</code>; специальная семантика ведущих нулей Alpine не моделируется. Глобальная совместимость ограничений, приоритеты поставщиков, install_if и объединение main/community не реализованы. Из-за этого на других пакетах возможны расхождения с apk; они не скрываются за неполным результатом. Подпись индекса не проверяется: по умолчанию используется HTTPS, пакеты не скачиваются и не исполняются.</p>
+<h2>PDF-версия и сдача</h2>
+<p><code>README.pdf</code> — печатная версия этого README, сформированная Chromium из <code>README.html</code> через механизм печати в PDF, эквивалентный Ctrl+P → «Сохранить как PDF». Для ручного повторения открыть <code>README.html</code> в Chrome/Edge, нажать Ctrl+P, выбрать A4 и сохранить PDF. HTML и PDF содержат локальные изображения, подключение к интернету для просмотра не требуется.</p>
+<p>Этапы сохраняются отдельными коммитами <code>feat(workbook2): ...</code>; итоговый отчет — отдельным коммитом документации. Изменения первой работы не включаются в эти коммиты.</p>
+<h2>Источники</h2>
+<ul>
+<li><a href="https://github.com/alpinelinux/apk-tools/blob/master/doc/apk-package.5.scd">Официальная документация формата APK</a></li>
+<li><a href="https://github.com/alpinelinux/apk-tools">Исходники и документация apk-tools</a></li>
+<li><a href="https://dl-cdn.alpinelinux.org/alpine/v3.22/main/x86_64/">Официальный репозиторий Alpine v3.22</a></li>
+<li><a href="https://d2lang.com/">Язык диаграмм D2</a></li>
+</ul>
+</body></html>
