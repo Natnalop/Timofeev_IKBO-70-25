@@ -124,10 +124,11 @@ python Workbook2/stage4/depgraph.py --config Workbook2/stage4/examples/depth1.to
 ```powershell
 python Workbook2/stage5/depgraph.py --config Workbook2/stage5/examples/curl.toml
 python Workbook2/stage5/examples/generate_real.py
+python Workbook2/stage5/examples/generate_real.py --renderer python
 python Workbook2/stage5/depgraph.py --config Workbook2/stage5/examples/curl.toml --svg Workbook2/stage5/examples/curl.svg
 ```
 
-Вторая команда воспроизводит три D2-файла и три SVG-картинки из сохраненного индекса стандартной библиотекой Python, без интернета. Последняя команда получает данные по URL и сохраняет SVG напрямую через Python. Внешняя программа D2 для рисования больше не требуется. Модуль `stage5/svg_renderer.py` размещает узлы по слоям и записывает прямоугольники, подписи и стрелки в формате SVG. Используются только белый и черный цвета, соединения состоят из прямых отрезков. Текст D2 по-прежнему выводится в консоль согласно заданию. При сохранении stdout из Windows PowerShell 5 рекомендуется явно задавать UTF-8; готовые `.d2` уже записаны в UTF-8.
+Вторая команда воспроизводит прежнее оформление трех SVG-картинок через D2 из сохраненного индекса, без интернета. Для нее нужен D2 в PATH или `Workbook2/.tools/d2.exe`. Следующая команда с `--renderer python` использует собственную отрисовку без D2 и заменяет картинки вариантом Python. Эти два способа имеют разное расположение узлов. Последняя команда получает данные по URL и сохраняет SVG напрямую через Python. Готовые картинки в отчете используют оформление D2: белый фон, черные рамки и прямоугольные соединения. Модуль `stage5/svg_renderer.py` остается альтернативным способом отрисовки. Текст D2 выводится в консоль согласно заданию. При сохранении stdout из Windows PowerShell 5 рекомендуется явно задавать UTF-8; готовые `.d2` уже записаны в UTF-8.
 
 | Пакет и версия | Вершины | Ребра | Результат сравнения с apk dot |
 |---|---|---|---|

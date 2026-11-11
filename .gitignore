@@ -1,0 +1,16 @@
+# Python: служебные файлы не должны попадать в репозиторий.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Локальные инструменты и временные результаты.
+Workbook2/.tools/
+Workbook2/tmp/
+.DS_Store
+Thumbs.db

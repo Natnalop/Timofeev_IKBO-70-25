@@ -1,8 +1,7 @@
-import importlib.util
 from pathlib import Path
 import sys
 import unittest
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as element_tree
 import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,7 +14,7 @@ NS = {'s': 'http://www.w3.org/2000/svg'}
 class SvgTests(unittest.TestCase):
     def test_nodes_edges_and_monochrome(self):
         a, b = Package('A', '1'), Package('B', '1')
-        root = ET.fromstring(to_svg({a, b}, {(a, b)}))
+        root = element_tree.fromstring(to_svg({a, b}, {(a, b)}))
         self.assertEqual(len(root.findall('s:polyline', NS)), 1)
         self.assertEqual(len(root.findall('s:text', NS)), 4)
         for element in root.iter():
@@ -25,13 +24,13 @@ class SvgTests(unittest.TestCase):
 
     def test_cycle_and_isolated_are_valid(self):
         a, b, z = (Package(name, '1') for name in ('A', 'B', 'Z'))
-        root = ET.fromstring(to_svg({a, b, z}, {(a, b), (b, a)}))
+        root = element_tree.fromstring(to_svg({a, b, z}, {(a, b), (b, a)}))
         self.assertEqual(len(root.findall('s:polyline', NS)), 2)
         self.assertEqual(len(root.findall('s:text', NS)), 6)
 
     def test_escape_and_deterministic(self):
         a = Package('A<&', '1')
-        self.assertEqual(ET.fromstring(to_svg({a}, set())).find('s:text', NS).text, a.name)
+        self.assertEqual(element_tree.fromstring(to_svg({a}, set())).find('s:text', NS).text, a.name)
         self.assertEqual(to_svg({a}, set()), to_svg({a}, set()))
 
     def test_curl_routes_are_orthogonal_and_avoid_nodes(self):
@@ -39,7 +38,7 @@ class SvgTests(unittest.TestCase):
             repo = parse_index(archive.extractfile('APKINDEX').read().decode())
         package = repo.names['curl'][0]
         graph = build_graph(repo, package, Config('curl', '', False, package.version, 20, ''))
-        svg = ET.fromstring(to_svg(*graph))
+        svg = element_tree.fromstring(to_svg(*graph))
         boxes = [tuple(float(rect.attrib[k]) for k in ('x', 'y', 'width', 'height'))
                  for rect in svg.findall('s:rect', NS) if 'x' in rect.attrib]
         lines = svg.findall('s:polyline', NS)
