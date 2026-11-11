@@ -1,0 +1,50 @@
+CASE cycle, reverse=False, exit=0
+Узлы: A@1.0, B@1.0, C@1.0, D@1.0, E@1.0
+A@1.0 -> B@1.0
+A@1.0 -> C@1.0
+B@1.0 -> D@1.0
+C@1.0 -> D@1.0
+C@1.0 -> E@1.0
+D@1.0 -> A@1.0
+
+CASE cycle, reverse=True, exit=0
+Узлы: A@1.0, B@1.0, C@1.0, D@1.0
+A@1.0 -> D@1.0
+B@1.0 -> A@1.0
+C@1.0 -> A@1.0
+D@1.0 -> B@1.0
+D@1.0 -> C@1.0
+
+CASE depth1, reverse=False, exit=0
+Узлы: A@1.0, B@1.0, C@1.0
+A@1.0 -> B@1.0
+A@1.0 -> C@1.0
+
+CASE depth1, reverse=True, exit=0
+Узлы: A@1.0, D@1.0
+A@1.0 -> D@1.0
+
+CASE depth0, reverse=False, exit=0
+Узлы: A@1.0
+
+CASE depth0, reverse=True, exit=0
+Узлы: A@1.0
+
+CASE filter, reverse=False, exit=0
+Узлы: A@1.0, C@1.0, D@1.0, E@1.0
+A@1.0 -> C@1.0
+C@1.0 -> D@1.0
+C@1.0 -> E@1.0
+D@1.0 -> A@1.0
+
+CASE filter, reverse=True, exit=0
+Узлы: A@1.0, C@1.0, D@1.0
+A@1.0 -> D@1.0
+C@1.0 -> A@1.0
+D@1.0 -> C@1.0
+
+CASE isolated, reverse=False, exit=0
+Узлы: Z@1.0
+
+CASE isolated, reverse=True, exit=0
+Узлы: Z@1.0
