@@ -1,4 +1,32 @@
 direction: right
-"musl@1.2.5-r13": "musl\n1.2.5-r13"
-"zlib@1.4-r0": "zlib\n1.4-r0"
-"zlib@1.4-r0" -> "musl@1.2.5-r13"
+vars: {
+  d2-config: {
+    layout-engine: elk
+  }
+}
+style.fill: white
+"musl@1.2.5-r13": "musl\n1.2.5-r13" {
+  shape: rectangle
+  style.fill: white
+  style.stroke: black
+  style.font-color: black
+  style.stroke-width: 1
+  style.border-radius: 0
+  style.shadow: false
+  style.font-size: 18
+}
+"zlib@1.4-r0": "zlib\n1.4-r0" {
+  shape: rectangle
+  style.fill: white
+  style.stroke: black
+  style.font-color: black
+  style.stroke-width: 1
+  style.border-radius: 0
+  style.shadow: false
+  style.font-size: 18
+}
+"zlib@1.4-r0" -> "musl@1.2.5-r13" {
+  style.stroke: black
+  style.stroke-width: 1
+  style.border-radius: 0
+}

@@ -255,9 +255,15 @@ def build_graph(repo, root, config, reverse=False):
 
 def to_d2(nodes, edges):
     quote = lambda text: json.dumps(text, ensure_ascii=False)
-    lines = ['direction: right']
-    lines.extend(f'{quote(p.key)}: {quote(p.name + chr(10) + p.version)}' for p in sorted(nodes))
-    lines.extend(f'{quote(a.key)} -> {quote(b.key)}' for a, b in sorted(edges))
+    lines = ['direction: right', 'vars: {', '  d2-config: {', '    layout-engine: elk', '  }', '}', 'style.fill: white']
+    for p in sorted(nodes):
+        lines.extend([f'{quote(p.key)}: {quote(p.name + chr(10) + p.version)} {{',
+                      '  shape: rectangle', '  style.fill: white', '  style.stroke: black',
+                      '  style.font-color: black', '  style.stroke-width: 1',
+                      '  style.border-radius: 0', '  style.shadow: false', '  style.font-size: 18', '}'])
+    for a, b in sorted(edges):
+        lines.extend([f'{quote(a.key)} -> {quote(b.key)} {{', '  style.stroke: black',
+                      '  style.stroke-width: 1', '  style.border-radius: 0', '}'])
     return '\n'.join(lines) + '\n'
 
 def main(argv=None):
