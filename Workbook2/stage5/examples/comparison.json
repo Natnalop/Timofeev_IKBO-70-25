@@ -5,7 +5,19 @@
     "our_edges": 1,
     "only_apk": [],
     "only_ours": [],
-    "command": "docker run --rm -v C:\\WorkSpace\\Timofeev_--70-25\\Workbook2\\stage5\\examples:/data:ro alpine@sha256:49340b346798875b5592e5d420241f2f9cfba5f47e62ebb1446a1b34734e898f sh -ec \"mkdir -p /tmp/root/etc/apk /tmp/root/lib/apk/db /tmp/repo/x86_64; touch /tmp/root/lib/apk/db/installed; cp /data/APKINDEX.tar.gz /tmp/repo/x86_64/; apk --root /tmp/root --allow-untrusted --no-network --repositories-file /dev/null -X /tmp/repo dot \\\"$1\\\"\" sh busybox"
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "-v",
+      "C:\\WorkSpace\\Timofeev_--70-25\\Workbook2\\tmp\\tmpqsdholgb:/data:ro",
+      "alpine@sha256:49340b346798875b5592e5d420241f2f9cfba5f47e62ebb1446a1b34734e898f",
+      "sh",
+      "-ec",
+      "mkdir -p /tmp/root/etc/apk /tmp/root/lib/apk/db /tmp/repo/x86_64; touch /tmp/root/lib/apk/db/installed; cp /data/APKINDEX.tar.gz /tmp/repo/x86_64/; apk --root /tmp/root --allow-untrusted --no-network --repositories-file /dev/null -X /tmp/repo dot \"$1\"",
+      "sh",
+      "busybox"
+    ]
   },
   {
     "package": "zlib",
@@ -13,7 +25,19 @@
     "our_edges": 1,
     "only_apk": [],
     "only_ours": [],
-    "command": "docker run --rm -v C:\\WorkSpace\\Timofeev_--70-25\\Workbook2\\stage5\\examples:/data:ro alpine@sha256:49340b346798875b5592e5d420241f2f9cfba5f47e62ebb1446a1b34734e898f sh -ec \"mkdir -p /tmp/root/etc/apk /tmp/root/lib/apk/db /tmp/repo/x86_64; touch /tmp/root/lib/apk/db/installed; cp /data/APKINDEX.tar.gz /tmp/repo/x86_64/; apk --root /tmp/root --allow-untrusted --no-network --repositories-file /dev/null -X /tmp/repo dot \\\"$1\\\"\" sh zlib"
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "-v",
+      "C:\\WorkSpace\\Timofeev_--70-25\\Workbook2\\tmp\\tmpqsdholgb:/data:ro",
+      "alpine@sha256:49340b346798875b5592e5d420241f2f9cfba5f47e62ebb1446a1b34734e898f",
+      "sh",
+      "-ec",
+      "mkdir -p /tmp/root/etc/apk /tmp/root/lib/apk/db /tmp/repo/x86_64; touch /tmp/root/lib/apk/db/installed; cp /data/APKINDEX.tar.gz /tmp/repo/x86_64/; apk --root /tmp/root --allow-untrusted --no-network --repositories-file /dev/null -X /tmp/repo dot \"$1\"",
+      "sh",
+      "zlib"
+    ]
   },
   {
     "package": "curl",
@@ -21,6 +45,18 @@
     "our_edges": 28,
     "only_apk": [],
     "only_ours": [],
-    "command": "docker run --rm -v C:\\WorkSpace\\Timofeev_--70-25\\Workbook2\\stage5\\examples:/data:ro alpine@sha256:49340b346798875b5592e5d420241f2f9cfba5f47e62ebb1446a1b34734e898f sh -ec \"mkdir -p /tmp/root/etc/apk /tmp/root/lib/apk/db /tmp/repo/x86_64; touch /tmp/root/lib/apk/db/installed; cp /data/APKINDEX.tar.gz /tmp/repo/x86_64/; apk --root /tmp/root --allow-untrusted --no-network --repositories-file /dev/null -X /tmp/repo dot \\\"$1\\\"\" sh curl"
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "-v",
+      "C:\\WorkSpace\\Timofeev_--70-25\\Workbook2\\tmp\\tmpqsdholgb:/data:ro",
+      "alpine@sha256:49340b346798875b5592e5d420241f2f9cfba5f47e62ebb1446a1b34734e898f",
+      "sh",
+      "-ec",
+      "mkdir -p /tmp/root/etc/apk /tmp/root/lib/apk/db /tmp/repo/x86_64; touch /tmp/root/lib/apk/db/installed; cp /data/APKINDEX.tar.gz /tmp/repo/x86_64/; apk --root /tmp/root --allow-untrusted --no-network --repositories-file /dev/null -X /tmp/repo dot \"$1\"",
+      "sh",
+      "curl"
+    ]
   }
 ]

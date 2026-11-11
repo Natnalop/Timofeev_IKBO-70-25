@@ -1,0 +1,66 @@
+@page {
+  size: A4;
+  margin: 16mm 15mm 18mm;
+}
+body {
+  font: 10.5pt/1.45 Arial, sans-serif;
+  color: #000;
+  background: #fff;
+  max-width: 1000px;
+  margin: 28px auto;
+}
+h1 { font-size: 25pt; line-height: 1.15; }
+h2 { font-size: 16pt; margin-top: 24px; }
+h1, h2, h3 { break-after: avoid; }
+p, li { orphans: 3; widows: 3; }
+pre {
+  font: 9pt/1.4 Consolas, monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: #fff;
+  border: 1px solid #000;
+  padding: 12px;
+  break-inside: avoid;
+}
+code {
+  font: 9pt Consolas, monospace;
+  overflow-wrap: anywhere;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 9pt;
+  margin: 14px 0;
+}
+th, td {
+  border: 1px solid #000;
+  padding: 6px;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+th { background: #fff; }
+tr { break-inside: avoid; }
+thead { display: table-header-group; }
+img {
+  display: block;
+  max-width: 100%;
+  max-height: 225mm;
+  margin: 12px auto;
+  break-inside: avoid;
+}
+.graph {
+  display: block;
+  break-inside: avoid;
+  margin: 12px auto;
+  text-align: center;
+}
+.graph > svg {
+  display: block;
+  max-width: 100%;
+  max-height: 225mm;
+  margin: auto;
+}
+a, a:visited { color: #000; overflow-wrap: anywhere; }
+@media print {
+  body { margin: 0; max-width: none; }
+}

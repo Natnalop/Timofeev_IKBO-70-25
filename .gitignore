@@ -12,5 +12,9 @@ venv/
 # Локальные инструменты и временные результаты.
 Workbook2/.tools/
 Workbook2/tmp/
+Workbook2/README.html
+Workbook2/README.pdf
+*.tar.gz
+*.zip
 .DS_Store
 Thumbs.db

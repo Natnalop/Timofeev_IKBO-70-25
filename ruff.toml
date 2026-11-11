@@ -1,0 +1,19 @@
+line-length = 80
+target-version = "py311"
+extend-exclude = [".tools", "tmp", "__pycache__"]
+
+[lint]
+select = [
+    "E", "F", "I", "N", "C90", "PLR0913", "PLR2004",
+    "D100", "D101", "D102", "D103", "D104", "D105", "D107",
+]
+
+[lint.mccabe]
+max-complexity = 10
+
+[lint.pylint]
+max-args = 7
+
+[lint.pep8-naming]
+# Имена методов жизненного цикла заданы интерфейсом unittest.TestCase.
+ignore-names = ["setUp", "tearDown", "setUpClass", "tearDownClass"]
