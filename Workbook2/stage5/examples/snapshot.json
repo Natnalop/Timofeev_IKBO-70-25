@@ -1,0 +1,22 @@
+{
+  "url": "https://dl-cdn.alpinelinux.org/alpine/v3.22/main/x86_64/APKINDEX.tar.gz",
+  "date": "2026-11-11",
+  "sha256": "59a53c5eda5244cb03cf0ccea4401eee32bf2000495db756dd5eb82e01771c67",
+  "packages": {
+    "busybox": {
+      "version": "1.37.0-r20",
+      "nodes": 2,
+      "edges": 1
+    },
+    "zlib": {
+      "version": "1.4-r0",
+      "nodes": 2,
+      "edges": 1
+    },
+    "curl": {
+      "version": "8.14.1-r4",
+      "nodes": 14,
+      "edges": 28
+    }
+  }
+}

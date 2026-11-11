@@ -1,0 +1,40 @@
+CASE cycle, reverse=False, exit=0
+direction: right
+"A@1.0": "A\n1.0"
+"B@1.0": "B\n1.0"
+"C@1.0": "C\n1.0"
+"D@1.0": "D\n1.0"
+"E@1.0": "E\n1.0"
+"A@1.0" -> "B@1.0"
+"A@1.0" -> "C@1.0"
+"B@1.0" -> "D@1.0"
+"C@1.0" -> "D@1.0"
+"C@1.0" -> "E@1.0"
+"D@1.0" -> "A@1.0"
+
+CASE depth1, reverse=False, exit=0
+direction: right
+"A@1.0": "A\n1.0"
+"B@1.0": "B\n1.0"
+"C@1.0": "C\n1.0"
+"A@1.0" -> "B@1.0"
+"A@1.0" -> "C@1.0"
+
+CASE depth0, reverse=False, exit=0
+direction: right
+"A@1.0": "A\n1.0"
+
+CASE filter, reverse=False, exit=0
+direction: right
+"A@1.0": "A\n1.0"
+"C@1.0": "C\n1.0"
+"D@1.0": "D\n1.0"
+"E@1.0": "E\n1.0"
+"A@1.0" -> "C@1.0"
+"C@1.0" -> "D@1.0"
+"C@1.0" -> "E@1.0"
+"D@1.0" -> "A@1.0"
+
+CASE isolated, reverse=False, exit=0
+direction: right
+"Z@1.0": "Z\n1.0"

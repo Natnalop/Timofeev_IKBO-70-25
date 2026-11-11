@@ -1,0 +1,5 @@
+digraph "apkindex" {
+  rankdir=LR;
+  node [shape=box];
+  "zlib-1.4-r0" -> "musl-1.2.5-r13"[arrowhead=inv,label="so:libc.musl-x86_64.so.1",];
+}
