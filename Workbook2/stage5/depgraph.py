@@ -269,6 +269,8 @@ def to_d2(nodes, edges):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=f'APK dependency graph, этап {STAGE}')
     parser.add_argument('--config', type=Path, default=Path(__file__).with_name('config.toml'))
+    if STAGE == 5:
+        parser.add_argument('--svg', type=Path, help='сохранить SVG средствами Python, без D2')
     if STAGE == 4:
         parser.add_argument('--reverse', action='store_true', help='обратные транзитивные зависимости')
     args = parser.parse_args(argv)
@@ -288,6 +290,13 @@ def main(argv=None):
         nodes, edges = build_graph(repo, root, config, getattr(args, 'reverse', False))
         if STAGE == 5:
             print(to_d2(nodes, edges), end='')
+            if args.svg:
+                from svg_renderer import to_svg
+                try:
+                    args.svg.write_text(to_svg(nodes, edges), encoding='utf-8')
+                except OSError as exc:
+                    raise AppError(f'Не удалось сохранить SVG: {exc}') from exc
+                print(f'SVG сохранен: {args.svg}', file=sys.stderr)
         else:
             print('Узлы: ' + ', '.join(p.key for p in sorted(nodes)))
             for a, b in sorted(edges):

@@ -8,6 +8,7 @@ import tarfile
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 import depgraph as d
+from svg_renderer import to_svg
 
 def main():
     archive_path = HERE / 'APKINDEX.tar.gz'
@@ -20,6 +21,7 @@ def main():
         config = d.Config(name, metadata['url'], False, package.version, 20, '')
         nodes, edges = d.build_graph(repo, package, config)
         (HERE / f'{name}.d2').write_text(d.to_d2(nodes, edges), encoding='utf-8')
+        (HERE / f'{name}.svg').write_text(to_svg(nodes, edges), encoding='utf-8')
         (HERE / f'{name}.toml').write_text('\n'.join(f'{k} = {json.dumps(v)}' for k,v in vars(config).items())+'\n', encoding='utf-8')
         metadata['packages'][name] = {'version': package.version, 'nodes': len(nodes), 'edges': len(edges)}
     (HERE / 'snapshot.json').write_text(json.dumps(metadata, indent=2), encoding='utf-8')
