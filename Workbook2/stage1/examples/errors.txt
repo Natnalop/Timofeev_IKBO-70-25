@@ -1,0 +1,17 @@
+package: exit=2
+Ошибка: package: недопустимое имя пакета
+
+repository: exit=2
+Ошибка: repository: файл тестового репозитория не найден
+
+test_mode: exit=2
+Ошибка: test_mode: требуется bool
+
+version: exit=2
+Ошибка: version: требуется непустая версия, начинающаяся с цифры
+
+max_depth: exit=2
+Ошибка: max_depth: допустимо целое число от 0 до 200
+
+filter_substring: exit=2
+Ошибка: filter_substring: фильтр исключает корневой пакет

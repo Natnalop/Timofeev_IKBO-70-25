@@ -1,0 +1,6 @@
+package = "A"
+repository = "missing.json"
+test_mode = true
+version = "1.0"
+max_depth = 10
+filter_substring = ""

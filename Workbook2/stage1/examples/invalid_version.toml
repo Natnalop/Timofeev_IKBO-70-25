@@ -1,0 +1,6 @@
+package = "A"
+repository = "../repository.json"
+test_mode = true
+version = ""
+max_depth = 10
+filter_substring = ""
