@@ -1,75 +1,75 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2098 1262" role="img">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1998 1160" role="img">
 <title>Граф зависимостей пакетов</title>
-<rect width="2098" height="1262" fill="white"/>
+<rect width="1998" height="1160" fill="white"/>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="black"/></marker></defs>
-<polyline points="984,97 1000,97 1000,992 1814,992 1814,496 1830,496" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="984,211 1008,211 1008,1008 1806,1008 1806,496 1830,496" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="268,496 316,496 316,496 398,496" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="268,496 308,496 308,1024 1790,1024 1790,496 1830,496" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="268,496 316,496 316,1040 708,1040 708,781 756,781" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="1342,439 1358,439 1358,1056 1814,1056 1814,496 1830,496" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="626,496 722,496 722,97 756,97" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="626,496 650,496 650,211 756,211" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="626,496 662,496 662,325 756,325" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="626,496 674,496 674,1072 1066,1072 1066,439 1114,439" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="626,496 642,496 642,1088 1098,1088 1098,553 1114,553" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="626,496 698,496 698,439 756,439" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="626,496 710,496 710,553 756,553" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="626,496 666,496 666,1104 1790,1104 1790,496 1830,496" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="626,496 650,496 650,667 756,667" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="626,496 662,496 662,781 756,781" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="626,496 674,496 674,895 756,895" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="1342,553 1402,553 1402,496 1472,496" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="1342,553 1382,553 1382,1120 1790,1120 1790,496 1830,496" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="984,439 1068,439 1068,553 1114,553" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="984,439 1000,439 1000,1136 1456,1136 1456,496 1472,496" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="984,439 1008,439 1008,1152 1806,1152 1806,496 1830,496" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="984,553 1020,553 1020,439 1114,439" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="984,553 1024,553 1024,1168 1790,1168 1790,496 1830,496" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="1700,496 1760,496 1760,496 1830,496" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="984,667 1000,667 1000,1184 1814,1184 1814,496 1830,496" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="984,781 1008,781 1008,1200 1806,1200 1806,496 1830,496" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<polyline points="984,895 1016,895 1016,1216 1798,1216 1798,496 1830,496" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
-<rect x="756" y="64" width="228" height="66" fill="white" stroke="black"/>
-<text x="870" y="90" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">brotli-libs</text>
-<text x="870" y="112" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">1.1.1-r0</text>
-<rect x="756" y="178" width="228" height="66" fill="white" stroke="black"/>
-<text x="870" y="204" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">c-ares</text>
-<text x="870" y="226" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">1.34.9-r0</text>
-<rect x="756" y="292" width="228" height="66" fill="white" stroke="black"/>
-<text x="870" y="318" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">ca-certificates-bundle</text>
-<text x="870" y="340" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">20261020-r0</text>
-<rect x="40" y="463" width="228" height="66" fill="white" stroke="black"/>
-<text x="154" y="489" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">curl</text>
-<text x="154" y="511" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">8.14.1-r4</text>
-<rect x="1114" y="406" width="228" height="66" fill="white" stroke="black"/>
-<text x="1228" y="432" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">libcrypto3</text>
-<text x="1228" y="454" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">3.5.9-r0</text>
-<rect x="398" y="463" width="228" height="66" fill="white" stroke="black"/>
-<text x="512" y="489" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">libcurl</text>
-<text x="512" y="511" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">8.14.1-r4</text>
-<rect x="1114" y="520" width="228" height="66" fill="white" stroke="black"/>
-<text x="1228" y="546" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">libidn2</text>
-<text x="1228" y="568" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">2.3.7-r0</text>
-<rect x="756" y="406" width="228" height="66" fill="white" stroke="black"/>
-<text x="870" y="432" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">libpsl</text>
-<text x="870" y="454" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">0.21.5-r3</text>
-<rect x="756" y="520" width="228" height="66" fill="white" stroke="black"/>
-<text x="870" y="546" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">libssl3</text>
-<text x="870" y="568" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">3.5.9-r0</text>
-<rect x="1472" y="463" width="228" height="66" fill="white" stroke="black"/>
-<text x="1586" y="489" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">libunistring</text>
-<text x="1586" y="511" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">1.3-r0</text>
-<rect x="1830" y="463" width="228" height="66" fill="white" stroke="black"/>
-<text x="1944" y="489" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">musl</text>
-<text x="1944" y="511" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">1.2.5-r13</text>
-<rect x="756" y="634" width="228" height="66" fill="white" stroke="black"/>
-<text x="870" y="660" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">nghttp2-libs</text>
-<text x="870" y="682" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">1.69.0-r0</text>
-<rect x="756" y="748" width="228" height="66" fill="white" stroke="black"/>
-<text x="870" y="774" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">zlib</text>
-<text x="870" y="796" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">1.4-r0</text>
-<rect x="756" y="862" width="228" height="66" fill="white" stroke="black"/>
-<text x="870" y="888" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">zstd-libs</text>
-<text x="870" y="910" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">1.5.7-r0</text>
+<polyline points="944,85 964.333,85 964.333,85 1168,85 1168,85 1302.71,85 1302.71,85 1506,85 1506,85 1641.15,85 1641.15,552.077 1730,552.077" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="944,175 969.667,175 969.667,175 1168,175 1168,175 1308.43,175 1308.43,175 1506,175 1506,175 1647.31,175 1647.31,557.154 1730,557.154" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="268,563.5 303,563.5 303,490 378,490" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="268,596.5 343,596.5 343,670 492,670 492,670 695.286,670 695.286,1075 830,1075 830,1075 1033.67,1075 1033.67,1075 1168,1075 1168,1075 1371.29,1075 1371.29,1075 1506,1075 1506,1075 1708.85,1075 1708.85,607.923 1730,607.923" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="268,580 323,580 323,580 492,580 492,580 689.571,580 689.571,996 716,996" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="1282,625 1342.71,625 1342.71,625 1506,625 1506,625 1678.08,625 1678.08,582.538 1730,582.538" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="606,462.5 626.714,462.5 626.714,85 716,85" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="606,468 632.429,468 632.429,175 716,175" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="606,473.5 638.143,473.5 638.143,265 716,265" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="606,495.5 661,495.5 661,625 830,625 830,625 1007,625 1007,636 1054,636" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="606,490 655.286,490 655.286,535 830,535 830,535 1001.67,535 1001.67,546 1054,546" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="606,479 643.857,479 643.857,355 716,355" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="606,484.5 649.571,484.5 649.571,445 716,445" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="606,512 678.143,512 678.143,895 830,895 830,895 1023,895 1023,895 1168,895 1168,895 1359.86,895 1359.86,895 1506,895 1506,895 1696.54,895 1696.54,597.769 1730,597.769" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="606,501 666.714,501 666.714,715 716,715" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="606,517.5 683.857,517.5 683.857,974 716,974" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="606,506.5 672.429,506.5 672.429,805 716,805" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="1282,524 1331.29,524 1331.29,456 1392,456" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="1282,546 1337,546 1337,535 1506,535 1506,535 1671.92,535 1671.92,577.462 1730,577.462" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="944,371.5 985.667,371.5 985.667,524 1054,524" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="944,355 980.333,355 980.333,445 1168,445 1168,445 1325.57,445 1325.57,434 1392,434" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="944,338.5 975,338.5 975,265 1168,265 1168,265 1314.14,265 1314.14,265 1506,265 1506,265 1653.46,265 1653.46,562.231 1730,562.231" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="944,456 996.333,456 996.333,614 1054,614" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="944,434 991,434 991,355 1168,355 1168,355 1319.86,355 1319.86,355 1506,355 1506,355 1659.62,355 1659.62,567.308 1730,567.308" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="1620,445 1665.77,445 1665.77,572.385 1730,572.385" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="944,715 1012.33,715 1012.33,715 1168,715 1168,715 1348.43,715 1348.43,715 1506,715 1506,715 1684.23,715 1684.23,587.615 1730,587.615" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="944,985 1028.33,985 1028.33,985 1168,985 1168,985 1365.57,985 1365.57,985 1506,985 1506,985 1702.69,985 1702.69,602.846 1730,602.846" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="944,805 1017.67,805 1017.67,805 1168,805 1168,805 1354.14,805 1354.14,805 1506,805 1506,805 1690.38,805 1690.38,592.692 1730,592.692" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="716" y="52" width="228" height="66" fill="white" stroke="black"/>
+<text x="830" y="78" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">brotli-libs</text>
+<text x="830" y="100" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">1.1.1-r0</text>
+<rect x="716" y="142" width="228" height="66" fill="white" stroke="black"/>
+<text x="830" y="168" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">c-ares</text>
+<text x="830" y="190" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">1.34.9-r0</text>
+<rect x="716" y="232" width="228" height="66" fill="white" stroke="black"/>
+<text x="830" y="258" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">ca-certificates-bundle</text>
+<text x="830" y="280" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">20261020-r0</text>
+<rect x="40" y="547" width="228" height="66" fill="white" stroke="black"/>
+<text x="154" y="573" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">curl</text>
+<text x="154" y="595" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">8.14.1-r4</text>
+<rect x="1054" y="592" width="228" height="66" fill="white" stroke="black"/>
+<text x="1168" y="618" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">libcrypto3</text>
+<text x="1168" y="640" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">3.5.9-r0</text>
+<rect x="378" y="457" width="228" height="66" fill="white" stroke="black"/>
+<text x="492" y="483" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">libcurl</text>
+<text x="492" y="505" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">8.14.1-r4</text>
+<rect x="1054" y="502" width="228" height="66" fill="white" stroke="black"/>
+<text x="1168" y="528" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">libidn2</text>
+<text x="1168" y="550" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">2.3.7-r0</text>
+<rect x="716" y="322" width="228" height="66" fill="white" stroke="black"/>
+<text x="830" y="348" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">libpsl</text>
+<text x="830" y="370" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">0.21.5-r3</text>
+<rect x="716" y="412" width="228" height="66" fill="white" stroke="black"/>
+<text x="830" y="438" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">libssl3</text>
+<text x="830" y="460" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">3.5.9-r0</text>
+<rect x="1392" y="412" width="228" height="66" fill="white" stroke="black"/>
+<text x="1506" y="438" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">libunistring</text>
+<text x="1506" y="460" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">1.3-r0</text>
+<rect x="1730" y="547" width="228" height="66" fill="white" stroke="black"/>
+<text x="1844" y="573" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">musl</text>
+<text x="1844" y="595" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">1.2.5-r13</text>
+<rect x="716" y="682" width="228" height="66" fill="white" stroke="black"/>
+<text x="830" y="708" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">nghttp2-libs</text>
+<text x="830" y="730" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">1.69.0-r0</text>
+<rect x="716" y="952" width="228" height="66" fill="white" stroke="black"/>
+<text x="830" y="978" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">zlib</text>
+<text x="830" y="1000" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">1.4-r0</text>
+<rect x="716" y="772" width="228" height="66" fill="white" stroke="black"/>
+<text x="830" y="798" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="16">zstd-libs</text>
+<text x="830" y="820" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="14">1.5.7-r0</text>
 </svg>

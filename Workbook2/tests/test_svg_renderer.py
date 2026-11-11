@@ -3,10 +3,11 @@ from pathlib import Path
 import sys
 import unittest
 import xml.etree.ElementTree as ET
+import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'stage5'))
-from depgraph import Package
+from depgraph import Package, Config, parse_index, build_graph
 from svg_renderer import to_svg
 
 NS = {'s': 'http://www.w3.org/2000/svg'}
@@ -32,3 +33,24 @@ class SvgTests(unittest.TestCase):
         a = Package('A<&', '1')
         self.assertEqual(ET.fromstring(to_svg({a}, set())).find('s:text', NS).text, a.name)
         self.assertEqual(to_svg({a}, set()), to_svg({a}, set()))
+
+    def test_curl_routes_are_orthogonal_and_avoid_nodes(self):
+        with tarfile.open(ROOT / 'stage5/examples/APKINDEX.tar.gz') as archive:
+            repo = parse_index(archive.extractfile('APKINDEX').read().decode())
+        package = repo.names['curl'][0]
+        graph = build_graph(repo, package, Config('curl', '', False, package.version, 20, ''))
+        svg = ET.fromstring(to_svg(*graph))
+        boxes = [tuple(float(rect.attrib[k]) for k in ('x', 'y', 'width', 'height'))
+                 for rect in svg.findall('s:rect', NS) if 'x' in rect.attrib]
+        lines = svg.findall('s:polyline', NS)
+        self.assertEqual(len(lines), len(graph[1]))
+        for line in lines:
+            points = [tuple(map(float, point.split(','))) for point in line.attrib['points'].split()]
+            for (x1, y1), (x2, y2) in zip(points, points[1:]):
+                self.assertTrue(x1 == x2 or y1 == y2)
+                for x, y, w, h in boxes:
+                    if y1 == y2:
+                        crosses = y < y1 < y+h and max(min(x1,x2),x) < min(max(x1,x2),x+w)
+                    else:
+                        crosses = x < x1 < x+w and max(min(y1,y2),y) < min(max(y1,y2),y+h)
+                    self.assertFalse(crosses, (line.attrib['points'], (x,y,w,h)))
